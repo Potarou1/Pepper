@@ -20,7 +20,7 @@ def main(session):
 
 # Make a fist in right hand
 
- handName  = 'RHand'
+ 	handName  = 'RHand'
     motion_service.closeHand(handName)
 
 
@@ -60,7 +60,7 @@ def main(session):
 
 
 
-   """ # go to an init head pose.
+   	 # go to an init head pose.
     names  = ["HeadYaw", "HeadPitch"]
     angles = [0., 0.]
     times  = [1.0, 1.0]
@@ -80,7 +80,7 @@ def main(session):
     fractionMaxSpeed  = 1.
     motion_service.setAngles(names, angles, fractionMaxSpeed)
 
-    time.sleep(2.0)"""
+    time.sleep(2.0)
     # Go to rest position
     motion_service.rest()
 

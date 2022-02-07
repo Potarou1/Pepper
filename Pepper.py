@@ -6,7 +6,16 @@ import sys
 import math
 import time
 
+def main(session):
+    """
+    Task management - the second motion is not postponed
+    """
+    # Get the service ALMotion.
 
+    motion_service = session.service("ALMotion")
+
+    # Wake up robot
+    motion_service.wakeUp()
 
 
 # Make a fist in right hand
@@ -49,18 +58,9 @@ import time
 
 
 
-def main(session):
-    """
-    Task management - the second motion is not postponed
-    """
-    # Get the service ALMotion.
 
-    motion_service = session.service("ALMotion")
 
-    # Wake up robot
-    motion_service.wakeUp()
-
-    # go to an init head pose.
+   """ # go to an init head pose.
     names  = ["HeadYaw", "HeadPitch"]
     angles = [0., 0.]
     times  = [1.0, 1.0]
@@ -80,7 +80,7 @@ def main(session):
     fractionMaxSpeed  = 1.
     motion_service.setAngles(names, angles, fractionMaxSpeed)
 
-    time.sleep(2.0)
+    time.sleep(2.0)"""
     # Go to rest position
     motion_service.rest()
 

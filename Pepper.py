@@ -46,7 +46,11 @@ def main(session):
 
 
 
-
+    names  = ["LArmYaw"]
+    angles = [0.]
+    times  = [1.0]
+    isAbsolute = True
+    motion_service.angleInterpolation(names, angles, times, isAbsolute)
 
 
 
@@ -54,14 +58,14 @@ def main(session):
 #! /usr/bin/env python
 # -*- encoding: UTF-8 -*-
 
-"""Example: Task management - the second motion is not postponed"""
+	"""Example: Task management - the second motion is not postponed"""
 
 
 
 
 
    	 # go to an init head pose.
-    names  = ["HeadYaw", "HeadPitch"]
+    """names  = ["HeadYaw", "HeadPitch"]
     angles = [0., 0.]
     times  = [1.0, 1.0]
     isAbsolute = True
@@ -80,7 +84,7 @@ def main(session):
     fractionMaxSpeed  = 1.
     motion_service.setAngles(names, angles, fractionMaxSpeed)
 
-    time.sleep(2.0)
+    time.sleep(2.0)"""
     # Go to rest position
     motion_service.rest()
 

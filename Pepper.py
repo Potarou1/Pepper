@@ -46,11 +46,17 @@ def main(session):
 
 
 
-    names  = ["LArmYaw"]
-    angles = [0.]
-    times  = [1.0]
+    names  = "LArmPitch"
+    angles = 0.
+    times  = 1.0
     isAbsolute = True
     motion_service.angleInterpolation(names, angles, times, isAbsolute)
+
+    # move slowly the head to look in the left direction
+    names  = "LArmPitch"
+    angles = math.pi/2
+    fractionMaxSpeed = .1
+    motion_service.setAngles(names, angles, fractionMaxSpeed)
 
 
 

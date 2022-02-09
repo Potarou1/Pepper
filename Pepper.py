@@ -20,7 +20,7 @@ def main(session):
 
 # Make a fist in right hand
 
- 	handName  = 'RHand'
+    handName  = 'LHand'
     motion_service.closeHand(handName)
 
 
@@ -34,37 +34,61 @@ def main(session):
 # Open Right hand 
 
  
-    motion_service.openHand('RHand')
+    #motion_service.openHand('RHand')
 
 
 # retract arm 
+    names  = ["LElbowYaw", "LShoulderRoll", "LWristYaw", "LShoulderPitch", "LElbowRoll"]
+    angles = [0., 0.3, 0., 1.6, -.01]
+    times  = [.50, .2, 1., 1., 1.]
+    isAbsolute = True
+    motion_service.angleInterpolation(names, angles, times, isAbsolute)
 
+    names  =  ["LElbowYaw", "LShoulderRoll", "LWristYaw", "LShoulderPitch", "LElbowRoll"]
+    angles = [-2., .3, -1, .5, -1.]
+    fractionMaxSpeed = .4
+    motion_service.setAngles(names, angles, fractionMaxSpeed)
 
+    '''names  =  ["LElbowYaw", "LShoulderRoll", "LWristYaw", "LShoulderPitch", "LElbowRoll"]
+    angles = [0., .3, 0, .5, -.01]
+    fractionMaxSpeed = .1
+    motion_service.setAngles(names, angles, fractionMaxSpeed)
+    time.sleep(3.0)'''
 
 
 # Wave hand 
 
 
 
-    names  = "LArmPitch"
-    angles = 0.
-    times  = 1.0
+    """names  = ["LShoulderPitch", "LElbowYaw", "LElbowRoll"]
+    angles = [1.5, 0.,-.01]
+    times  = [1.0, 1.0, 1.0]
     isAbsolute = True
     motion_service.angleInterpolation(names, angles, times, isAbsolute)
+    
+    time.sleep(3.)
 
-    # move slowly the head to look in the left direction
-    names  = "LArmPitch"
-    angles = math.pi/2
+    names  =  ["LShoulderPitch", "LElbowYaw", "LElbowRoll"]
+    angles = [1.0, 2, -1.4]
     fractionMaxSpeed = .1
     motion_service.setAngles(names, angles, fractionMaxSpeed)
 
+    time.sleep(3.)
+
+    # move slowly the head to look in the left direction
+    names  =  ["LShoulderPitch", "LElbowYaw", "LElbowRoll"]
+    angles = [0., 0., -1.4]
+    fractionMaxSpeed = .1
+    motion_service.setAngles(names, angles, fractionMaxSpeed)
+
+    time.sleep(3.)"""
 
 
 
 #! /usr/bin/env python
 # -*- encoding: UTF-8 -*-
 
-	"""Example: Task management - the second motion is not postponed"""
+    """Example: Task management - the second motion is not postponed"""
 
 
 

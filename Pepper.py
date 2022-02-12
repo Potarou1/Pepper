@@ -48,12 +48,14 @@ def main(session):
     angles = [-2., .3, -1, .5, -1.]
     fractionMaxSpeed = .4
     motion_service.setAngles(names, angles, fractionMaxSpeed)
+    time.sleep(1.)
 
-    '''names  =  ["LElbowYaw", "LShoulderRoll", "LWristYaw", "LShoulderPitch", "LElbowRoll"]
-    angles = [0., .3, 0, .5, -.01]
-    fractionMaxSpeed = .1
+
+    names  =  ["LElbowYaw", "LShoulderRoll", "LWristYaw", "LShoulderPitch", "LElbowRoll"]
+    angles = [0., .3, 0, -.35, -.01]
+    fractionMaxSpeed = .3
     motion_service.setAngles(names, angles, fractionMaxSpeed)
-    time.sleep(3.0)'''
+    time.sleep(3.0)
 
 
 # Wave hand 

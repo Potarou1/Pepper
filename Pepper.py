@@ -18,26 +18,15 @@ def main(session):
     motion_service.wakeUp()
 
 
-# Make a fist in right hand
+# Say 'Watch Me Whip!'
 
-    handName  = 'LHand'
-    motion_service.closeHand(handName)
+    
+    from naoqi import ALProxy
+    tts = ALProxy("ALTextToSpeech", "172.18.5.223", 9559)
+    tts.say("Watch me Whip!")
+    time.sleep(1.)
 
-
-
-# Twist wrist while extending arm
-
-
-
-
-
-# Open Right hand 
-
- 
-    #motion_service.openHand('RHand')
-
-
-# retract arm 
+# Whip Action
     names  = ["LElbowYaw", "LShoulderRoll", "LWristYaw", "LShoulderPitch", "LElbowRoll"]
     angles = [0., 0.3, 0., 1.6, -.01]
     times  = [.50, .2, 1., 1., 1.]
@@ -53,70 +42,42 @@ def main(session):
 
     names  =  ["LElbowYaw", "LShoulderRoll", "LWristYaw", "LShoulderPitch", "LElbowRoll"]
     angles = [0., .3, 0, -.35, -.01]
-    fractionMaxSpeed = .3
+    fractionMaxSpeed = .5
     motion_service.setAngles(names, angles, fractionMaxSpeed)
-    time.sleep(3.0)
-
-
-# Wave hand 
+    time.sleep(1.5)
 
 
 
-    """names  = ["LShoulderPitch", "LElbowYaw", "LElbowRoll"]
-    angles = [1.5, 0.,-.01]
-    times  = [1.0, 1.0, 1.0]
-    isAbsolute = True
-    motion_service.angleInterpolation(names, angles, times, isAbsolute)
+# Say 'Watch Me Nei NEi
+    tts.say("Watch me Neigh Neigh!")
+
+ 
+# Waving Hand
     
-    time.sleep(3.)
-
-    names  =  ["LShoulderPitch", "LElbowYaw", "LElbowRoll"]
-    angles = [1.0, 2, -1.4]
-    fractionMaxSpeed = .1
+    names  =  ["LElbowYaw", "LShoulderRoll", "LWristYaw", "LShoulderPitch", "LElbowRoll"]
+    angles = [-1.9, .3, 0.1, -.35, -.01]
+    fractionMaxSpeed = .5
     motion_service.setAngles(names, angles, fractionMaxSpeed)
+    time.sleep(.75)
 
-    time.sleep(3.)
-
-    # move slowly the head to look in the left direction
-    names  =  ["LShoulderPitch", "LElbowYaw", "LElbowRoll"]
-    angles = [0., 0., -1.4]
-    fractionMaxSpeed = .1
+    names  =  ["LElbowYaw", "LShoulderRoll", "LWristYaw", "LShoulderPitch", "LElbowRoll"]
+    angles = [-1.9, .3, 0.4, -.35, -1.2]
+    fractionMaxSpeed = .5
     motion_service.setAngles(names, angles, fractionMaxSpeed)
+    time.sleep(.75)
 
-    time.sleep(3.)"""
-
-
-
-#! /usr/bin/env python
-# -*- encoding: UTF-8 -*-
-
-    """Example: Task management - the second motion is not postponed"""
-
-
-
-
-
-   	 # go to an init head pose.
-    """names  = ["HeadYaw", "HeadPitch"]
-    angles = [0., 0.]
-    times  = [1.0, 1.0]
-    isAbsolute = True
-    motion_service.angleInterpolation(names, angles, times, isAbsolute)
-
-    # move slowly the head to look in the left direction
-    names  = "HeadYaw"
-    angles = math.pi/2
-    fractionMaxSpeed = .1
+    names  =  ["LElbowYaw", "LShoulderRoll", "LWristYaw", "LShoulderPitch", "LElbowRoll"]
+    angles = [-1.0, .3, 0.4, -.35, -1.2]
+    fractionMaxSpeed = .5
     motion_service.setAngles(names, angles, fractionMaxSpeed)
+    time.sleep(1.0)
 
-    time.sleep(1.)
-
-    # while the previous motion is still running, update the angle
-    angles  = -math.pi/6
-    fractionMaxSpeed  = 1.
+    names  =  ["LElbowYaw", "LShoulderRoll", "LWristYaw", "LShoulderPitch", "LElbowRoll"]
+    angles = [-1.7, .3, 0.4, -.35, -1.2]
+    fractionMaxSpeed = .5
     motion_service.setAngles(names, angles, fractionMaxSpeed)
+    time.sleep(1.0)
 
-    time.sleep(2.0)"""
     # Go to rest position
     motion_service.rest()
 

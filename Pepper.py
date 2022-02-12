@@ -16,29 +16,28 @@ def main(session):
     Task management - the second motion is not postponed
     """
     # Get the service ALMotion.
-
     motion_service = session.service("ALMotion")
+    
+
     
     # Wake up robot
     motion_service.wakeUp()
 
 
-# Say 'Watch Me Whip!'
-
-    
+    # Say 'Watch Me Whip!'
     from naoqi import ALProxy
     tts = ALProxy("ALTextToSpeech", "172.18.5.223", 9559)
     tts.say("Watch me Whip!")
     time.sleep(1.)
 
-# Whip Action
+    # Whip Action
     names  = ["LElbowYaw", "LShoulderRoll", "LWristYaw", "LShoulderPitch", "LElbowRoll"]
-    angles = [0., 0.3, 0., 1.6, -.01]
-    times  = [.50, .2, 1., 1., 1.]
+    angles = [0.0, 0.3, 00., 1.6, -0.01]
+    times  = [0.50, 0.2, 1.0, 1.0, 1.0]
     isAbsolute = True
     motion_service.angleInterpolation(names, angles, times, isAbsolute)
 
-    new_angles = [[[-2.0, 0.3, -1.0, 0.5, -1.0], [0.0, 0.3, 0.0, -0.35, -0.01]],\
+    new_angles = [[[-2.0, 0.3, -1.0, 0.5, -1.0], [0.0, 0.3, 0.0, -0.35, -0.01]],
                   [[-1.9, 0.3, 0.1, -0.35, -0.01], [-1.9, 0.3, 0.5, -0.35, -1.2], 
                   [-1.0, 0.3, 0.5, -0.35, -1.2], [-1.7, 0.3, 0.5, -0.35, -1.2]]]
     max_speed = 0.5
@@ -47,19 +46,20 @@ def main(session):
     for i in range(0, len(new_angles[0])):
         new_motion(motion_service, new_angles[0][i], max_speed, wait)
 
+    time.sleep(2.0)
 
-# Say 'Watch Me Nei NEi
+    # Say 'Watch Me Nei NEi
     tts.say("Watch me Neigh Neigh!")
 
  
-# Waving Hand
+    # Waving Hand
     for i in range(0, len(new_angles[1])):
         new_motion(motion_service, new_angles[1][i], max_speed, wait)
     
 
     # Go to rest position
     motion_service.rest()
-
+    sys.exit(0)
     
     
 

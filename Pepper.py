@@ -6,6 +6,11 @@ import sys
 import math
 import time
 
+def new_motion(motion_service, new_angles, max_speed, wait):
+    motion_service.setAngles( ["LElbowYaw", "LShoulderRoll", "LWristYaw", "LShoulderPitch", "LElbowRoll"], new_angles, max_speed)
+    time.sleep(wait)
+
+
 def main(session):
     """
     Task management - the second motion is not postponed
@@ -13,7 +18,7 @@ def main(session):
     # Get the service ALMotion.
 
     motion_service = session.service("ALMotion")
-
+    
     # Wake up robot
     motion_service.wakeUp()
 
@@ -33,19 +38,14 @@ def main(session):
     isAbsolute = True
     motion_service.angleInterpolation(names, angles, times, isAbsolute)
 
-    names  =  ["LElbowYaw", "LShoulderRoll", "LWristYaw", "LShoulderPitch", "LElbowRoll"]
-    angles = [-2., .3, -1, .5, -1.]
-    fractionMaxSpeed = .4
-    motion_service.setAngles(names, angles, fractionMaxSpeed)
-    time.sleep(1.)
+    new_angles = [[[-2.0, 0.3, -1.0, 0.5, -1.0], [0.0, 0.3, 0.0, -0.35, -0.01]],\
+                  [[-1.9, 0.3, 0.1, -0.35, -0.01], [-1.9, 0.3, 0.5, -0.35, -1.2], 
+                  [-1.0, 0.3, 0.5, -0.35, -1.2], [-1.7, 0.3, 0.5, -0.35, -1.2]]]
+    max_speed = 0.5
+    wait = 1.0
 
-
-    names  =  ["LElbowYaw", "LShoulderRoll", "LWristYaw", "LShoulderPitch", "LElbowRoll"]
-    angles = [0., .3, 0, -.35, -.01]
-    fractionMaxSpeed = .5
-    motion_service.setAngles(names, angles, fractionMaxSpeed)
-    time.sleep(1.5)
-
+    for i in range(0, len(new_angles[0])):
+        new_motion(motion_service, new_angles[0][i], max_speed, wait)
 
 
 # Say 'Watch Me Nei NEi
@@ -53,33 +53,15 @@ def main(session):
 
  
 # Waving Hand
+    for i in range(0, len(new_angles[1])):
+        new_motion(motion_service, new_angles[1][i], max_speed, wait)
     
-    names  =  ["LElbowYaw", "LShoulderRoll", "LWristYaw", "LShoulderPitch", "LElbowRoll"]
-    angles = [-1.9, .3, 0.1, -.35, -.01]
-    fractionMaxSpeed = .5
-    motion_service.setAngles(names, angles, fractionMaxSpeed)
-    time.sleep(.75)
-
-    names  =  ["LElbowYaw", "LShoulderRoll", "LWristYaw", "LShoulderPitch", "LElbowRoll"]
-    angles = [-1.9, .3, 0.4, -.35, -1.2]
-    fractionMaxSpeed = .5
-    motion_service.setAngles(names, angles, fractionMaxSpeed)
-    time.sleep(.75)
-
-    names  =  ["LElbowYaw", "LShoulderRoll", "LWristYaw", "LShoulderPitch", "LElbowRoll"]
-    angles = [-1.0, .3, 0.4, -.35, -1.2]
-    fractionMaxSpeed = .5
-    motion_service.setAngles(names, angles, fractionMaxSpeed)
-    time.sleep(1.0)
-
-    names  =  ["LElbowYaw", "LShoulderRoll", "LWristYaw", "LShoulderPitch", "LElbowRoll"]
-    angles = [-1.7, .3, 0.4, -.35, -1.2]
-    fractionMaxSpeed = .5
-    motion_service.setAngles(names, angles, fractionMaxSpeed)
-    time.sleep(1.0)
 
     # Go to rest position
     motion_service.rest()
+
+    
+    
 
 
 if __name__ == "__main__":
